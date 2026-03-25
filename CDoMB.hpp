@@ -16,5 +16,8 @@
         void transpile_dna_to_rna(std::string dna_input, std::string rna_output);
             
         void compile_rna_to_protein(std::string rna_input, std::string protein_output);
+        
+        void convert_three_to_one_protein(std::string protein_input, std::string protein_output);
+        void convert_one_to_three_protein(std::string protein_input, std::string protein_output);
     }
 #endif

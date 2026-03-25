@@ -1,0 +1,23 @@
+{
+  "F": "Phe",
+  "L": "Leu",
+  "S": "Ser",
+  "Y": "Tyr",
+  "*": "Stp",
+  "C": "Cys",
+  "W": "Trp",
+  "P": "Pro",
+  "H": "His",
+  "Q": "Gln",
+  "R": "Arg",
+  "I": "Ile",
+  "M": "Met",
+  "T": "Thr",
+  "N": "Asn",
+  "K": "Lys",
+  "V": "Val",
+  "A": "Ala",
+  "D": "Asp",
+  "E": "Glu",
+  "G": "Gly"
+}

@@ -19,7 +19,7 @@ namespace CDoMB {
     using json = nlohmann::json;
     
     const char rna_to_amino[] = {
-        #embed "Protein_Mnemonics.json"
+        #embed "RNA_to_Protein.json"
     };
     
     void compile_rna_to_protein(std::string rna_input, std::string protein_output) {
@@ -43,7 +43,6 @@ namespace CDoMB {
         bool started = false;
         for (size_t i = 0; i + 2 < mRNA.length(); ) {
             std::string mnemonic = mRNA.substr(i, 3);
-            std::transform(mnemonic.begin(), mnemonic.end(), mnemonic.begin(), ::toupper);
             if ((mnemonic == "AUG") && !started) {
                 started = true;
                 std::print(protein_fp, "{} ", codons[mnemonic].get<std::string>());
@@ -57,7 +56,7 @@ namespace CDoMB {
                     if (codons.contains(mnemonic)) {
                         std::print(protein_fp, "{} ", codons[mnemonic].get<std::string>());
                     } else {
-                        std::print(protein_fp, "X ");
+                        std::print(protein_fp, "Unk ");
                     }
                     i += 3;
                 }

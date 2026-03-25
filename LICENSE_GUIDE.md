@@ -19,6 +19,7 @@ GNU LGPL - Restrictive Copyleft License (recomended for GPL or open-source proje
 2. Change the license file's name to "COPYING-CDoMB-LGPL".
 3. Dynamically link to the libraries only, and do not use source code at all.
 
-## How to comply with the Creative Commons Zero License (only applies to [compile_CDoMB.sh](https://github.com/SkyeTheDeveloper/CDoMB/blob/main/compile_CDoMB.sh) and [Protein_Mnemonics.json](https://github.com/SkyeTheDeveloper/CDoMB/blob/main/Protein_Mnemonics.json))
+## How to comply with the Creative Commons Zero License
+**(only applies to [compile_CDoMB.sh](https://github.com/SkyeTheDeveloper/CDoMB/blob/main/compile_CDoMB.sh), [RNA_to_Protein.json](https://github.com/SkyeTheDeveloper/CDoMB/blob/main/RNA_to_Protein.json), [Three_to_One.json](https://github.com/SkyeTheDeveloper/CDoMB/blob/main/Three_to_One.json), and [One_to_Three.json](https://github.com/SkyeTheDeveloper/CDoMB/blob/main/One_to_Three.json))**
 1. Copy the [LICENSE-CC0](https://github.com/SkyeTheDeveloper/CDoMB/blob/main/LICENSE-CC0) file into your project's root folder.
 2. Change the license file's name to "COPYING-CDoMB_Build_Scripts-CC0".

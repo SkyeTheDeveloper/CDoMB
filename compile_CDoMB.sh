@@ -21,7 +21,7 @@ elif [[ "$OSTYPE" == *"win"* ]]; then
     LIB_EXT="lib"
     DYLIB_EXT="dll"
     OBJ_EXT="obj"
-    LDFLAGS=""
+    LDFLAGS="-target x86_64-windows-gnu"
     INST_LOC="$LOCALAPPDATA"
 else
     LIB_EXT="a"
@@ -32,20 +32,23 @@ else
 fi
 
 for f in *.cpp; do
-    if [[ "$f" != "main.cpp" ]]; then
-        clang++ @compile_flags.txt -c "$f" -o "${f%.cpp}.$OBJ_EXT"
+    if [[ "$LIB_EXT" == "lib" ]]; then
+        zig c++ -target x86_64-windows-gnu -c "$f" @compile_flags.txt -o "${f%.cpp}.lib"
+    else
+        zig c++ -c "$f" @compile_flags.txt -o "${f%.cpp}.$OBJ_EXT"
     fi
 done
 
-ar rcs "bin/libCDoMB.${LIB_EXT}" *."$OBJ_EXT"
-clang++ -shared $LDFLAGS -o "bin/libCDoMB.${DYLIB_EXT}" *."$OBJ_EXT"
+zig ar rcs "bin/libCDoMB.${LIB_EXT}" *."$OBJ_EXT"
+for f in *.cpp; do
+    if [[ "$LIB_EXT" == "lib" ]]; then
+        zig c++ -target x86_64-windows-gnu -shared $LDFLAGS -o bin/libCDoMB.dll *.obj
+    else
+        zig c++ -shared $LDFLAGS -o "bin/libCDoMB.${DYLIB_EXT}" *."$OBJ_EXT"
+    fi
+done
+zig c++ -shared $LDFLAGS -o "bin/libCDoMB.${DYLIB_EXT}" *."$OBJ_EXT"
 mkdir -p "$INST_LOC"
-if [[ $SHELL == "/bin/zsh" || $SHELL == "/usr/bin/zsh" ]]; then
-    echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$INST_LOC" >> ~/.zshrc
-elif [[ $SHELL == "/bin/bash" || $SHELL == "/usr/bin/bash" ]]; then
-    echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$INST_LOC" >> ~/.bashrc
-else
-    echo "Non-BASH/Non-ZSH shell as default. Please add 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$INST_LOC' to your shell's path."
-fi
 mv -f "bin/libCDoMB.${DYLIB_EXT}" "$INST_LOC"
+echo "Please add 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$INST_LOC' to your shell's path (MacOS/Linux) or '%LOCALAPPDATA%' to your User Path (Windows) if you want to dynamically link."
 rm *."$OBJ_EXT"

@@ -1,0 +1,23 @@
+{
+  "PHE": "F",
+  "LEU": "L",
+  "SER": "S",
+  "TYR": "Y",
+  "STP": "*",
+  "CYS": "C",
+  "TRP": "W",
+  "PRO": "P",
+  "HIS": "H",
+  "GLN": "Q",
+  "ARG": "R",
+  "ILE": "I",
+  "MET": "M",
+  "THR": "T",
+  "ASN": "N",
+  "LYS": "K",
+  "VAL": "V",
+  "ALA": "A",
+  "ASP": "D",
+  "GLU": "E",
+  "GLY": "G"
+}
