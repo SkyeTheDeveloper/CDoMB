@@ -36,8 +36,8 @@ int main() {
 - **Unknown codons:** If a codon contains an invalid symbol or is not found in the translation table, it is replaced with an "X" in the output to indicate an unknown amino acid.
 
 ## How to use this project
-See ["LICENSE_GUIDE.md"](https://github.com/SkyeTheDeveloper/CDoMB/blob/main/LICENSE_GUIDE.md)
+See [LICENSE_GUIDE.md](https://github.com/SkyeTheDeveloper/CDoMB/blob/main/LICENSE_GUIDE.md)
 
 ## Credits
 This project includes software developed by Niels Lohmann - Copyright (c) 2013-2026 Niels Lohmann.
-See ["NOTICE.md"](https://github.com/SkyeTheDeveloper/CDoMB/blob/main/NOTICE.md) for more details.
+See [NOTICE.md](https://github.com/SkyeTheDeveloper/CDoMB/blob/main/NOTICE.md) for more details.
