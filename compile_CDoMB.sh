@@ -17,7 +17,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     OBJ_EXT="o"
     LDFLAGS="-fPIC -Wl,-install_name,@rpath/libCDoMB.dylib"
     INST_LOC="$HOME/.local/lib"
-elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
+elif [[ "$OSTYPE" == *"win"* ]]; then
     LIB_EXT="lib"
     DYLIB_EXT="dll"
     OBJ_EXT="obj"
