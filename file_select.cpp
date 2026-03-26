@@ -6,7 +6,6 @@
  * If you would like to use the GNU Lesser General Public License, read "How to comply with the LGPL" in the README.md
  */
 
-#include <cstddef>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
@@ -14,20 +13,15 @@
 #include "CDoMB.hpp"
 
 namespace CDoMB {
-    
+
     void select_file_to_compile(std::string file) {
         {
             std::ifstream filetest(file);
-            std::string file_ext = "";
-            if (file.length() >= 5) {
-                file_ext = file.substr(file.length() - 4);
-            }
-                
-            if (file_ext == ".dna" || file_ext == ".rna") {
+
+            if (file.ends_with(".dna") || file.ends_with(".rna")) {
                 if (!(filetest.is_open())) {
                     std::println(std::cerr, "File not found...\nEnsure you have typed the correct path.");
                     exit(1);
-                    filetest.close();
                 } else {
                     filetest.close();
                 }
@@ -38,16 +32,12 @@ namespace CDoMB {
             }
         }
         std::string intermediary = file;
-        if (intermediary.substr(intermediary.length() - 4) == ".dna") {
+        if (intermediary.ends_with(".dna")) {
             intermediary.replace(intermediary.rfind(".dna"), 4, ".rna");
         }
         std::string output = intermediary;
         output.replace(output.rfind(".rna"), 4, ".protein");
-        
-        if (file.substr(file.length() - 4) == ".dna") {
-            transpile_dna_to_rna(file, intermediary);
-        } else {
-            compile_rna_to_protein(intermediary, output);
-        }
+
+        (file.ends_with(".dna") ? transpile_dna_to_rna(file, intermediary) : compile_rna_to_protein(intermediary, output));
     }
 }

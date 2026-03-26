@@ -17,20 +17,20 @@
 
 namespace CDoMB {
     using json = nlohmann::json;
-    
+
     const char three_to_one[] = {
         #embed "Three_to_One.json"
     };
     const char one_to_three[] = {
         #embed "One_to_Three.json"
     };
-    
+
     void convert_three_to_one_protein(std::string protein_input, std::string protein_output) {
-        if (protein_input.substr(protein_input.length() - 8) != ".protein" || protein_output.substr(protein_output.length() - 8) != ".protein") {
+        if (!protein_input.ends_with(".protein") || !protein_output.ends_with(".protein")) {
             std::println("ERR: Wrong input/output file type...");
             exit(1);
         }
-        
+
         std::ifstream input_fp(protein_input);
         std::ofstream output_fp(protein_output);
         std::string input;
@@ -44,21 +44,20 @@ namespace CDoMB {
         input.erase(std::remove(input.begin(), input.end(), '\r'), input.end());
         std::transform(input.begin(), input.end(), input.begin(), ::toupper);
         for (size_t i = 0; i + 2 < input.length(); i += 3) {
+            if (i + 3 > input.length()) break;
+
             std::string chars = input.substr(i, 3);
-            if (three_letters.contains(chars)) {
-                std::print(output_fp, "{} ", three_letters[chars].get<std::string>());
-            } else {
-                std::print(output_fp, "X ");
-            }
+
+            (three_letters.contains(chars) ? std::print(output_fp, "{} ", three_letters[chars].get<std::string>()) : std::print(output_fp, "X "));
         }
     }
-    
+
     void convert_one_to_three_protein(std::string protein_input, std::string protein_output) {
-        if (protein_input.substr(protein_input.length() - 8) != ".protein" || protein_output.substr(protein_output.length() - 8) != ".protein") {
+        if (!protein_input.ends_with(".protein") || !protein_output.ends_with(".protein")) {
             std::println("ERR: Wrong input/output file type...");
             exit(1);
         }
-        
+
         std::ifstream input_fp(protein_input);
         std::ofstream output_fp(protein_output);
         std::string input;
@@ -71,13 +70,10 @@ namespace CDoMB {
         input.erase(std::remove(input.begin(), input.end(), '\n'), input.end());
         input.erase(std::remove(input.begin(), input.end(), '\r'), input.end());
         std::transform(input.begin(), input.end(), input.begin(), ::toupper);
-        for (size_t i = 0; i + 2 < input.length(); i += 3) {
-            std::string chars = input.substr(i, 3);
-            if (one_letter.contains(chars)) {
-                std::print(output_fp, "{} ", one_letter[chars].get<std::string>());
-            } else {
-                std::print(output_fp, "X ");
-            }
+        for (size_t i = 0; i < input.length(); i++) {
+            std::string ch = std::string(1, input[i]);
+
+            (one_letter.contains(ch) ? std::print(output_fp, "{} ", one_letter[ch].get<std::string>()) : std::print(output_fp, "Unk "));
         }
     }
 }

@@ -18,15 +18,15 @@
 
 namespace CDoMB {
     namespace fs = std::filesystem;
-    
+
     bool generate_intermediate;
-    
+
     void transpile_dna_to_rna(std::string dna_input, std::string rna_output) {
-        if (dna_input.substr(dna_input.length() - 4) != ".dna" || rna_output.substr(rna_output.length() - 4) != ".rna") {
+        if (!dna_input.ends_with(".dna") || !rna_output.ends_with(".rna")) {
             std::println("ERR: Wrong input/output file type...");
             exit(1);
         }
-        
+
         {
             char save_intermediary = '\0';
             while (save_intermediary != 'y' && save_intermediary != 'n') {
@@ -43,7 +43,7 @@ namespace CDoMB {
                 }
             }
         }
-        
+
         std::ifstream dna_fp(dna_input);
         std::ofstream rna_fp(rna_output);
         std::string transcription;
@@ -62,7 +62,9 @@ namespace CDoMB {
         }
         std::transform(transcription.begin(), transcription.end(), transcription.begin(), ::toupper);
         std::replace(transcription.begin(), transcription.end(), 'T', 'U');
-        transcription.pop_back();
+        if (!transcription.empty()) {
+            transcription.pop_back();
+        }
         std::print(rna_fp, "{}", transcription);
         rna_fp.close();
         dna_fp.close();

@@ -17,17 +17,17 @@
 
 namespace CDoMB {
     using json = nlohmann::json;
-    
+
     const char rna_to_amino[] = {
         #embed "RNA_to_Protein.json"
     };
-    
+
     void compile_rna_to_protein(std::string rna_input, std::string protein_output) {
-        if (rna_input.substr(rna_input.length() - 4) != ".rna" || protein_output.substr(protein_output.length() - 8) != ".protein") {
+        if (!rna_input.ends_with(".rna") || !protein_output.ends_with(".protein")) {
             std::println("ERR: Wrong input/output file type...");
             exit(1);
         }
-        
+
         std::ifstream rna_fp(rna_input);
         std::ofstream protein_fp(protein_output);
         std::string mRNA;
@@ -41,25 +41,24 @@ namespace CDoMB {
         mRNA.erase(std::remove(mRNA.begin(), mRNA.end(), '\r'), mRNA.end());
         std::transform(mRNA.begin(), mRNA.end(), mRNA.begin(), ::toupper);
         bool started = false;
-        for (size_t i = 0; i + 2 < mRNA.length(); ) {
-            std::string mnemonic = mRNA.substr(i, 3);
-            if ((mnemonic == "AUG") && !started) {
+        for (size_t i = 0; i + 3 <= mRNA.length(); ) {
+            std::string codon = mRNA.substr(i, 3);
+
+            if (codon == "AUG" && !started) {
                 started = true;
-                std::print(protein_fp, "{} ", codons[mnemonic].get<std::string>());
+                std::print(protein_fp, "{} ", codons[codon].get<std::string>());
                 i += 3;
                 continue;
-            } else if (started) {
-                if (mnemonic == "UAA" || mnemonic == "UAG" || mnemonic == "UGA") {
-                    std::print(protein_fp, "{} ", codons[mnemonic].get<std::string>());
+            }
+
+            if (started) {
+                if (codon == "UAA" || codon == "UAG" || codon == "UGA") {
+                    std::print(protein_fp, "{} ", codons[codon].get<std::string>());
                     break;
-                } else {
-                    if (codons.contains(mnemonic)) {
-                        std::print(protein_fp, "{} ", codons[mnemonic].get<std::string>());
-                    } else {
-                        std::print(protein_fp, "Unk ");
-                    }
-                    i += 3;
                 }
+
+                (codons.contains(codon) ? std::print(protein_fp, "{} ", codons[codon].get<std::string>()) :std::print(protein_fp, "Unk "));
+                i += 3;
             } else {
                 i++;
             }
