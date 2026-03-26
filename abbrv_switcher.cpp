@@ -7,6 +7,7 @@
  */
 
 #include <algorithm>
+#include <array>
 #include <cstddef>
 #include <cstdlib>
 #include <fstream>
@@ -39,9 +40,12 @@ namespace CDoMB {
         while (getline(input_fp, line)) {
             input += line;
         }
-        input.erase(std::remove(input.begin(), input.end(), ' '), input.end());
-        input.erase(std::remove(input.begin(), input.end(), '\n'), input.end());
-        input.erase(std::remove(input.begin(), input.end(), '\r'), input.end());
+        {
+            const std::array<char, 3> remove_chars = {' ', '\n', '\r'};
+            for (char c : remove_chars) {
+                input.erase(std::remove(input.begin(), input.end(), c), input.end());
+            }
+        }
         std::transform(input.begin(), input.end(), input.begin(), ::toupper);
         for (size_t i = 0; i + 2 < input.length(); i += 3) {
             if (i + 3 > input.length()) break;

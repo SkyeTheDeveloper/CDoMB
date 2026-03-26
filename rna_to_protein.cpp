@@ -36,9 +36,12 @@ namespace CDoMB {
         while (getline(rna_fp, line)) {
             mRNA += line;
         }
-        mRNA.erase(std::remove(mRNA.begin(), mRNA.end(), ' '), mRNA.end());
-        mRNA.erase(std::remove(mRNA.begin(), mRNA.end(), '\n'), mRNA.end());
-        mRNA.erase(std::remove(mRNA.begin(), mRNA.end(), '\r'), mRNA.end());
+        {
+            const std::array<char, 3> remove_chars = {' ', '\n', '\r'};
+            for (char c : remove_chars) {
+                mRNA.erase(std::remove(mRNA.begin(), mRNA.end(), c), mRNA.end());
+            }
+        }
         std::transform(mRNA.begin(), mRNA.end(), mRNA.begin(), ::toupper);
         bool started = false;
         for (size_t i = 0; i + 3 <= mRNA.length(); ) {
