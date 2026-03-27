@@ -70,9 +70,12 @@ namespace CDoMB {
         while (getline(input_fp, line)) {
             input += line;
         }
-        input.erase(std::remove(input.begin(), input.end(), ' '), input.end());
-        input.erase(std::remove(input.begin(), input.end(), '\n'), input.end());
-        input.erase(std::remove(input.begin(), input.end(), '\r'), input.end());
+        {
+            const std::array<char, 3> remove_chars = {' ', '\n', '\r'};
+            for (char c : remove_chars) {
+                input.erase(std::remove(input.begin(), input.end(), c), input.end());
+            }
+        }
         std::transform(input.begin(), input.end(), input.begin(), ::toupper);
         for (size_t i = 0; i < input.length(); i++) {
             std::string ch = std::string(1, input[i]);
