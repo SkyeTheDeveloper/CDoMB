@@ -6,6 +6,7 @@
  * If you would like to use the GNU Lesser General Public License, read "How to comply with the LGPL" in the LICENSE_GUIDE.md
  */
 
+#include "CDoMB.hpp"
 #include <algorithm>
 #include <cctype>
 #include <cstdlib>
@@ -14,7 +15,6 @@
 #include <iostream>
 #include <print>
 #include <string>
-#include "CDoMB.hpp"
 
 namespace CDoMB {
     namespace fs = std::filesystem;

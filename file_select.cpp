@@ -6,11 +6,11 @@
  * If you would like to use the GNU Lesser General Public License, read "How to comply with the LGPL" in the LICENSE_GUIDE.md
  */
 
+#include "CDoMB.hpp"
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <print>
-#include "CDoMB.hpp"
 
 namespace CDoMB {
 

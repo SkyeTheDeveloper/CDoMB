@@ -6,6 +6,7 @@
  * If you would like to use the GNU Lesser General Public License, read "How to comply with the LGPL" in the LICENSE_GUIDE.md
  */
 
+#include "CDoMB.hpp"
 #include <algorithm>
 #include <array>
 #include <cstddef>
@@ -13,8 +14,7 @@
 #include <fstream>
 #include <print>
 #include <string>
-#include "CDoMB.hpp"
-#include "lib/json.hpp"
+#include <json.hpp>
 
 namespace CDoMB {
     using json = nlohmann::json;
@@ -25,18 +25,20 @@ namespace CDoMB {
     const char one_to_three[] = {
         #embed "One_to_Three.json"
     };
+    
+    std::string input;
+    std::string line;
+    auto three_letters = json::parse(std::begin(three_to_one), std::end(three_to_one));
+    auto one_letter = json::parse(std::begin(one_to_three), std::end(one_to_three));
 
     void convert_three_to_one_protein(std::string protein_input, std::string protein_output) {
         if (!protein_input.ends_with(".protein") || !protein_output.ends_with(".protein")) {
             std::println("ERR: Wrong input/output file type...");
             exit(1);
         }
-
+        
         std::ifstream input_fp(protein_input);
         std::ofstream output_fp(protein_output);
-        std::string input;
-        std::string line;
-        auto three_letters = json::parse(std::begin(three_to_one), std::end(three_to_one));
         while (getline(input_fp, line)) {
             input += line;
         }
@@ -61,12 +63,9 @@ namespace CDoMB {
             std::println("ERR: Wrong input/output file type...");
             exit(1);
         }
-
         std::ifstream input_fp(protein_input);
         std::ofstream output_fp(protein_output);
-        std::string input;
-        std::string line;
-        auto one_letter = json::parse(std::begin(one_to_three), std::end(one_to_three));
+
         while (getline(input_fp, line)) {
             input += line;
         }
