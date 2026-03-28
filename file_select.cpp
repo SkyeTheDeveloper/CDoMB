@@ -2,8 +2,8 @@
  * SPDX Identifier: Apache-2.0 OR LGPL-3.0-or-later
  * Copyright (c) 2026 Skylar Koningin
  * This code is licensed under Apache License 2.0 or GNU Lesser General Public License v3.0 or later
- * If you would like to use the Apache License, read "How to comply with the Apache License" in the README.md
- * If you would like to use the GNU Lesser General Public License, read "How to comply with the LGPL" in the README.md
+ * If you would like to use the Apache License, read "How to comply with the Apache License" in the LICENSE_GUIDE.md
+ * If you would like to use the GNU Lesser General Public License, read "How to comply with the LGPL" in the LICENSE_GUIDE.md
  */
 
 #include <cstdlib>

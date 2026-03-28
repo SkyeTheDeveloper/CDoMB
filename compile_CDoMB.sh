@@ -4,7 +4,7 @@
 SPDX Identifier: CC0-1.0
 Copyright (c) 2026 Skylar Koningin
 This code is licensed under the Creative Commons Zero v1.0 Universal License.
-Please read "How to comply with the Creative Commons Zero License" in the README.md
+Please read "How to comply with the Creative Commons Zero License" in the LICENSE_GUIDE.md
 '
 
 set -e
