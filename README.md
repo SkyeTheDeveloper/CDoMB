@@ -5,8 +5,9 @@ CDoMB ("see-dahm"; /'si-dɑm/), an acronym meaning "Central Dogma of Molecular B
 I am using "transpile" to mean DNA to RNA transcription and "compile" to mean RNA to Protein translation, as those two ideas can easily be mapped onto one another due to the similarity between code transpilation/compilation and DNA -> RNA transcription/RNA -> Protein translation.
 
 ### Dependencies
-Compiler: at minimum GCC 13, Clang 15, or MSVC 19.33
-nlohmann/json: bundled!
+- Compiler (Linux/MacOS): at minimum GCC 15 or Clang 19
+- Compiler (Windows): MSYS2 CLANG64 (https://www.msys2.org/) and Zig
+- nlohmann/json: bundled!
 
 ### How to compile
 1. Open a terminal in the root of this project
