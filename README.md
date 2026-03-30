@@ -33,7 +33,6 @@ int main() {
 ### Important Notes
 - **Input:** Files should be raw nucleotide text (there can be spaces or new lines between codons). The library **DOES NOT AND WILL NOT** support FASTA files.
 - **Start Codon:** The compiler scans until it finds the first **AUG**. It will not start translating until it hits that, and if no start is found, the .protein file will be fully empty.
-- **Interactive Prompt:** Processing `.dna` files will trigger a terminal prompt asking if you want to save the intermediary `.rna` file.
 - **Unknown codons:** If a codon contains an invalid symbol or is not found in the translation table, it is replaced with an "X" in the output to indicate an unknown amino acid.
 
 ## How to use this project

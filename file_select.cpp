@@ -38,6 +38,6 @@ namespace CDoMB {
         std::string output = intermediary;
         output.replace(output.rfind(".rna"), 4, ".protein");
 
-        (file.ends_with(".dna") ? transpile_dna_to_rna(file, intermediary) : compile_rna_to_protein(intermediary, output));
+        (file.ends_with(".dna") ? transpile_dna_to_rna(file, intermediary, true) : compile_rna_to_protein(intermediary, output));
     }
 }

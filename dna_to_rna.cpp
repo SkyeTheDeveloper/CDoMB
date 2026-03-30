@@ -19,29 +19,10 @@
 namespace CDoMB {
     namespace fs = std::filesystem;
 
-    bool generate_intermediate;
-
-    void transpile_dna_to_rna(std::string dna_input, std::string rna_output) {
+    void transpile_dna_to_rna(std::string dna_input, std::string rna_output, bool generate_intermediate) {
         if (!dna_input.ends_with(".dna") || !rna_output.ends_with(".rna")) {
             std::println("ERR: Wrong input/output file type...");
             exit(1);
-        }
-
-        {
-            char save_intermediary = '\0';
-            while (save_intermediary != 'y' && save_intermediary != 'n') {
-                std::print("Do you want to generate an intermediary file (y/n)? ");
-                if (!(std::cin >> save_intermediary)) {
-                    std::println(std::cerr, "Invalid input...\nPlease enter 'y' or 'n'.");
-                    save_intermediary = '\0';
-                } else if (save_intermediary == 'y') {
-                    generate_intermediate = true;
-                } else if (save_intermediary == 'n') {
-                    generate_intermediate = false;
-                } else {
-                    std::println("Invalid input...\nPlease try again.");
-                }
-            }
         }
 
         std::ifstream dna_fp(dna_input);

@@ -13,7 +13,7 @@
     namespace CDoMB {
         void select_file_to_compile(std::string file);
             
-        void transpile_dna_to_rna(std::string dna_input, std::string rna_output);
+        void transpile_dna_to_rna(std::string dna_input, std::string rna_output, bool generate_intermediate);
             
         void compile_rna_to_protein(std::string rna_input, std::string protein_output);
         
