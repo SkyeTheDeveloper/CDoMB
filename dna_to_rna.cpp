@@ -12,7 +12,7 @@
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
-#include <iostream>
+#include <iostream> // IWYU pragma: keep
 #include <print>
 #include <string>
 
