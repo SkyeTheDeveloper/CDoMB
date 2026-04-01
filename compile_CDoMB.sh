@@ -30,7 +30,7 @@ else
     INST_LOC="$HOME/.local/lib"
 fi
 
-if [[ -z "$COMPILER" ]]; then
+if [[ ${#COMPILER[@]} -eq 0 ]]; then
     for comp in "${COMPILERS[@]}"; do
         if command -v "$comp" &>/dev/null; then
             if [[ "$comp" == "zig" ]]; then
